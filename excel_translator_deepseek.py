@@ -1,3 +1,5 @@
+#deepseek version without gui
+
 import pandas as pd
 import deepl
 import logging
