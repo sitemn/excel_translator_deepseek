@@ -1,0 +1,5 @@
+pandas
+openai>=1.0.0
+deepl
+openpyxl
+tk
