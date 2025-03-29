@@ -1,20 +1,31 @@
-# Excel Translator App with DeepSeek 
+# Excel Translator App Using DeepSeek And Deepl with Google Sheets Export
 
-A simple desktop GUI application to translate Chinese content in Excel files into English using DeepL and DeepSeek APIs.
+This app is a GUI-based tool built with Python and Tkinter that allows you to:
+- 📥 Translate columns in an Excel file from Chinese to English using **DeepL** and **DeepSeek** APIs.
+- 📤 Write the translated data to specific worksheets in a Google Sheets document using address-based matching.
+- 📁 Export unmatched rows (with no corresponding worksheet) to a separate Excel file and view them in a popup.
 
 ## 🖥 Features
-
+✅ Translate Excel files using:
+- **DeepL API** for columns like `Product`, `Model_Requirements`, `Scene`, `Pets_Kids`
+- **DeepSeek API** for `Shooting_Requirements` (combined from `Comments` + `Requirements`)
 - Select any `.xlsx` Excel file
 - Enter DeepL and DeepSeek API keys (masked input)
 - Set number of parallel threads for DeepSeek translation
 - View real-time logs in a scrollable window
 - Export translated Excel with `_translated.xlsx` suffix
 
+✅ Google Sheets integration:
+- Use the `Address` number to match the correct worksheet tab
+- Append translated data to the matched worksheet
+- Save unmatched rows to `unmatched_rows.xlsx`
+- View unmatched rows in a GUI window for review
+
 ## ⚙️ Setup Instructions
 
 ### 1. Install Dependencies
 
-Make sure you have Python 3.8+ installed. Then run:
+Make sure you have Python 3.8+ installed.
 
 Install required packages:
 
@@ -35,17 +46,31 @@ pip install -r requirements.txt
 - Navigate to your **API Keys** section
 - Copy the key for use in the app
 
-> You don’t need to set environment variables — just paste the keys directly in the app UI.
+### 3. Google Sheets Setup
+
+#### a. Enable Sheets API
+- Create a project at Google Cloud Console
+
+- Enable Google Sheets API
+
+#### b. Create Service Account
+- Create a service account and download the JSON credentials
+
+- Share your target Google Sheet with the service account email
 
 ## 📁 Project Structure
 
 ```
 excel_translator_app/
-├── main.py          # Entry point to launch the app
-├── gui.py           # GUI layout and behavior (Tkinter)
-├── translator.py    # Translation logic (DeepL + DeepSeek)
-├── logger.py        # Logging setup with GUI integration
+├── gui.py                 # Main GUI code
+├── main.py                # Entry point
+├── translator.py          # Translation logic (DeepL, DeepSeek)
+├── logger.py              # Logging to GUI
+├── sheets_writer.py       # Google Sheets logic
+├── gspread_helper.py      # Auth & append helpers
+├── unmatched_rows.xlsx    # Output for skipped rows
 ├── requirements.txt
+└── README.md
 ```
 
 ## 🚀 How to Run

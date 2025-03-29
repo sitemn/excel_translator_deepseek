@@ -3,3 +3,5 @@ openai>=1.0.0
 deepl
 openpyxl
 tk
+gspread
+oauth2client
